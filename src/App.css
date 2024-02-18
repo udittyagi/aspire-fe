@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "OpenSans";
+}
+
+.main__container {
+  width: 100vw;
+  color: #fff;
+  padding: 24px;
+  background-color: #0C365A;
+  min-height: 100vh;
+}
+
+.btn--primary {
+  width: 80px;
+  height: 30px;
+  background: #2ecc71;
+  color: #ffffff;
+  border: 0px;
+}
+
+button:disabled,
+button[disabled] {
+  opacity: 0.5;
+}
+
+.btn--secondary {
+  width: 80px;
+  height: 30px;
+  background: #f95353;
+  color: #ffffff;
+  border: 0px;
+}

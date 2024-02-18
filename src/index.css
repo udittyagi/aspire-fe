@@ -1,0 +1,36 @@
+@font-face {
+  font-family: "OpenSans";
+  font-display: swap;
+  src: local("OpenSans"),
+    url("./assets/fonts/Open_Sans/static/OpenSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "OpenSans-Bold";
+  font-display: swap;
+  src: local("OpenSans-Bold"),
+    url("./assets/fonts/Open_Sans/static/OpenSans-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "OpenSans-Light";
+  font-display: swap;
+  src: local("OpenSans-Light"),
+    url("./assets/fonts/Open_Sans/static/OpenSans-Light.ttf") format("truetype");
+  font-weight: lighter;
+}
+
+html {
+  font-size: 16px;
+}
+
+/* path.b,
+path.c {
+  fill: currentColor;
+}
+
+path.a,
+path.c {
+  fill: #fff;
+} */
