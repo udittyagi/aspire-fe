@@ -11,14 +11,14 @@ import type CardAction from "../../types/cardAction.types";
 
 interface PropType {
     onAction: (cardId: number | string, action: string) => void;
-    cardData: CardDetails;
+    cardData?: CardDetails;
 }
 const CardActions = ({onAction, cardData}: PropType) => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [currItem, setCurrItem] = useState<CardAction>();
     
     const confirmHandler = () => {
-        if(currItem) {
+        if(currItem && cardData) {
             setIsDialogOpen(false);
             onAction(cardData.id, currItem.action);
         }
@@ -32,18 +32,18 @@ const CardActions = ({onAction, cardData}: PropType) => {
         if(item.dialog) {
             setIsDialogOpen(true);
             setCurrItem(item);
-        } else {
+        } else if(cardData) {
             onAction(cardData.id, item.action);
         }
     }
-    const actions = cardData.isFrozen 
+    const actions = cardData && cardData.isFrozen 
         ? cardActions.filter(item => item.action !== FREEZE_CARD)
         : cardActions.filter(item => item.action !== UN_FREEZE_CARD);
 
     return (
        <ActionsContainer className="action__container">
         {
-            actions.filter(item => cardData.isFrozen ? item.action !== FREEZE_CARD : item.action !== UN_FREEZE_CARD).map(item => (
+            actions.map(item => (
                 <ActionItem key={item.id} onClick={handleClick(item)}>
                     <img src={item.icon} alt={item.name}/>
                     <span>{item.name}</span>

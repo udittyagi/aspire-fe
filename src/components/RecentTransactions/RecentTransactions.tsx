@@ -29,7 +29,7 @@ const RecentTransactions = ({cardId}: PropTypes) => {
             } else {
                 try {
                     setApiStatus(API_LOADING)
-                    const res = await fetch('/cardDetails');
+                    const res = await fetch(`/cardDetails?${cardId}`);
                     const data = await res.json();
                     setTransactions(data);
                     setApiStatus(API_SUCCESS);

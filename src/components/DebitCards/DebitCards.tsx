@@ -14,11 +14,13 @@ import type CardsDetails from '../../types/cardsDetails.types';
 interface PropTypes {
     cardsData: Array<CardsDetails>;
     handleCardAction: (cardId: number | string, action: string) => void;
+    sliderKey?: number
 }
 
 const DebitCards = ({
     cardsData,
-    handleCardAction
+    handleCardAction,
+    sliderKey
 }: PropTypes) => {
     const [currSlide, setCurrSlide] = useState(0);
 
@@ -30,6 +32,7 @@ const DebitCards = ({
         slidesToScroll: 1,
         arrows: false,
         afterChange: (current: number) => {
+            console.log(current);
             setCurrSlide(Math.ceil(current));
         }
       };
@@ -42,7 +45,7 @@ const DebitCards = ({
         } else if(cardsData.length > 1) {
             return (
                 <div style={{marginRight: '-24px'}}>
-                    <Slider {...settings}>
+                    <Slider {...settings} key={sliderKey}>
                         {
                             cardsData.map((data, index) => (
                                 <Card key={data.id} {...data} baseColor={index % 2 === 0 ? GREEN_COLOR : CARD_BLUE_COLOR}/>
@@ -64,7 +67,7 @@ const DebitCards = ({
             <InfoContainer>
                 <CardActions cardData={cardsData[currSlide]} onAction={handleCardAction} />
                 <CardDetails />
-                <RecentTransactions cardId={cardsData[currSlide].id} />
+                <RecentTransactions cardId={cardsData[currSlide]?.id} />
             </InfoContainer>
         </DebitCardsContainer>
     )

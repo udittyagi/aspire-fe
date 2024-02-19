@@ -19,7 +19,8 @@ const Cards = () => {
     const [debitCardsData, setDebitCardsData] = useState<Array<CardsDetails>>([]);
     const [currTab, setCurrTab] = useState(0)
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [apiStatus, setApiStatus] = useState(API_STALE)
+    const [apiStatus, setApiStatus] = useState(API_STALE);
+    const [sliderKey, setSliderKey] = useState(0);
 
     useEffect(() => {
         (async function() {
@@ -54,6 +55,7 @@ const Cards = () => {
     const cancelCard = (cardId: string | number) => {
         const newCardsData = debitCardsData.filter(data => data.id !== cardId);
         setDebitCardsData(newCardsData);
+        setSliderKey(prev => prev + 1);
     }
 
     const handleCardAction = (cardId: number | string, action: string) => {
@@ -75,6 +77,7 @@ const Cards = () => {
 
     const handleAddCards = (cardData: CardsDetails) => {
         setDebitCardsData(prevData => [...prevData, cardData]);
+        setSliderKey(prev => prev + 1);
     }
 
     if(apiStatus !== API_SUCCESS) {
@@ -115,6 +118,7 @@ const Cards = () => {
                 <DebitCards
                     handleCardAction={handleCardAction}
                     cardsData={debitCardsData}
+                    sliderKey={sliderKey}
                 />
             </TabPanel>
             <TabPanel value={currTab} index={1}>
